@@ -68,7 +68,7 @@
         {
           "label": "Title Field",
           "widget": "input",
-          "name": "Title"
+          "name": "title"
         },
         {
           "label": "First Paragraph Field",
