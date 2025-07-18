@@ -1,0 +1,29 @@
+{
+  "name": "grander-template",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "emula": "cd firebaseDir && npm run dev",
+    "fireserve": "cd firebaseDir/functions && npm run build:watch",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/partytown": "^2.1.4",
+    "@astrojs/sitemap": "^3.3.0",
+    "@fontsource-variable/inter-tight": "^5.2.5",
+    "@tailwindcss/vite": "^4.0.12",
+    "astro": "^5.7.4",
+    "node-html-parser": "^7.0.1",
+    "sharp": "^0.33.5",
+    "swiper": "^11.2.6",
+    "tailwindcss": "^4.0.12",
+    "typescript": "^5.8.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16",
+    "daisyui": "^5.0.0"
+  }
+}

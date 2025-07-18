@@ -1,0 +1,156 @@
+---
+import websiteSetting from "@/features/websiteSetting.json";
+import { Image } from "astro:assets";
+import { getLocalAssetsImg } from "@/features/base/utilities";
+---
+
+<footer
+  class="footer sm:footer-horizontal bg-secondary text-secondary-content p-10"
+>
+  <aside>
+    <a href="/">
+      <Image
+        src={getLocalAssetsImg(websiteSetting.websiteLogo2.src)}
+        alt="navbarlogo"
+        format="avif"
+      />
+    </a>
+    {
+      websiteSetting.listOfAddress.length === 0 ? null : (
+        <>
+          <p class="text-white max-md:max-w-[220px]">
+            {websiteSetting.listOfAddress[0].companyName}
+          </p>
+          <p class="text-white max-md:max-w-[220px]">
+            {websiteSetting.listOfAddress[0].line1Address}
+          </p>
+          <p class="text-white max-md:max-w-[220px]">
+            {websiteSetting.listOfAddress[0].line2Address}
+          </p>
+          <p class="text-white max-md:max-w-[220px]">
+            {websiteSetting.listOfAddress[0].line3Address}
+          </p>
+        </>
+      )
+    }
+  </aside>
+  {
+    websiteSetting.NavbarInsertion.length === 0 ? null : (
+      <nav>
+        <div class="footer-title text-muted">Link</div>
+        {websiteSetting.NavbarInsertion.map((item) => (
+          <>
+            {item.type === "single" ? (
+              <a href={item.link} class="btnAction1">
+                {item.label}
+              </a>
+            ) : null}
+          </>
+        ))}
+      </nav>
+    )
+  }
+  {
+    websiteSetting.contactInfo.length === 0 ? null : (
+      <nav>
+        <div class="footer-title text-muted">Contact Info</div>
+        {websiteSetting.contactInfo.map(
+          (contact: {
+            label: string;
+            link: string;
+            content: string;
+            imgSrc: string;
+          }) => (
+            <div class="flex space-x-2">
+              <span>{contact.label}: </span>
+              <a target="_blank" href={contact.link}>
+                {contact.content}
+              </a>
+            </div>
+          )
+        )}
+      </nav>
+    )
+  }
+  {
+    websiteSetting.socialMedia.length === 0 ? null : (
+      <nav>
+        <div class="footer-title text-muted">Social</div>
+        <div class="flex flex-warp gap-4">
+          {websiteSetting.socialMedia.map(
+            (social: { label: string; link: string; imgSrc: string }) => (
+              <a target="_blank" href={social.link} class="btnAction1">
+                <Image
+                  src={getLocalAssetsImg(social.imgSrc)}
+                  alt="social logo"
+                  format="avif"
+                />
+              </a>
+            )
+          )}
+        </div>
+      </nav>
+    )
+  }
+</footer>
+<footer
+  class="footer sm:footer-horizontal footer-center bg-secondary text-secondary-content p-4"
+>
+  <aside>
+    <p>
+      Copyright © {new Date().getFullYear()} - All right reserved by zenShin Tech
+    </p>
+  </aside>
+</footer>
+
+<div>
+  <Fragment set:html={websiteSetting.FooterInsertion} />
+</div>
+
+<script>
+  const imageContainers = document.querySelectorAll(".rightSlide");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const container = entry.target;
+          const targetImg = container.querySelector("img");
+
+          if (!targetImg) return;
+
+          function imageLoaded(url: string): Promise<HTMLImageElement> {
+            return new Promise((resolve, reject) => {
+              const img = new Image();
+              img.onload = () => resolve(img);
+              img.onerror = () =>
+                reject(new Error(`Failed to load image from ${url}`));
+              img.src = url;
+            });
+          }
+
+          async function loadMyImage() {
+            try {
+              if (!targetImg) {
+                throw new Error("Image element not found");
+              }
+              await imageLoaded(targetImg.src);
+              container.classList.add("animate");
+              observer.unobserve(container);
+            } catch (error) {
+              console.error("Failed to load image:", error);
+            }
+          }
+
+          loadMyImage();
+        }
+      });
+    },
+    {
+      threshold: 1,
+    }
+  );
+
+  imageContainers.forEach((container) => {
+    observer.observe(container);
+  });
+</script>

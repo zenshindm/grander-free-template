@@ -1,0 +1,40 @@
+[
+  {
+    "pageName": "contact-us",
+    "pageTitle": "Professional Business Solutions for All",
+    "pageDescription": "Transform your online presence with our sleek business website template. Perfect for startups, agencies, and corporate brands",
+    "PageImage": "business.jpg",
+    "PageLayout": "DefaultLayout",
+    "compData": [
+      {
+        "componentName": "Contact Components",
+        "componentModule": "Contact",
+        "componentImg": "contact.png",
+        "data": {
+          "subTitle": "Contact",
+          "title": "Get In Touch",
+          "description": "Whether you are ready to start a project, have questions about our services, or just want to say hello—our team is here to help!",
+          "contactImg": "contact.jpg"
+        },
+        "props": [
+          {
+            "label": "Sub Title Field",
+            "widget": "input",
+            "name": "subTitle"
+          },
+          { "label": "Title Field", "widget": "input", "name": "title" },
+          {
+            "label": "Description Field",
+            "widget": "TextArea",
+            "name": "description"
+          },
+          {
+            "label": "Contact Image Field",
+            "widget": "img",
+            "name": "contactImg"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,74 @@
+{
+  "websiteUrl": "https://example.pages.dev",
+  "sitemapExcluded": ["/404/"],
+  "websiteLanguage": "en",
+  "websiteDirectionality": "ltr",
+  "defaultTitle": "Professional Business Solutions for All",
+  "defaultDescription": "Transform your online presence with our sleek business website template. Perfect for startups, agencies, and corporate brands",
+  "defaultMetaImage": "business.jpg",
+  "websiteFavicon": "favicon.svg",
+  "websiteLogo1": { "label": "Top Navbar Logo", "src": "GRANDER.svg" },
+  "websiteLogo2": { "label": "Bottom Navbar Logo", "src": "GRANDER-white.svg" },
+  "NavbarInsertion": [
+    { "label": "About us", "link": "#", "type": "single" }
+  ],
+  "ctaLink": {
+    "label": "Contact Us",
+    "link": "/contact-us/"
+  },
+  "listOfAddress": [
+    {
+      "companyName": "Grander Ltd",
+      "line1Address": "859 Schumacherring",
+      "line2Address": "Christian-Nickel-Straße 5b, Bremen",
+      "line3Address": "Jena, 50236, Germany"
+    },
+    {
+      "companyName": "Grander Asia Ltd",
+      "line1Address": "859 Schumacherring",
+      "line2Address": "Christian-Nickel-Straße 5b, Bremen",
+      "line3Address": "Jena, 50236, Germany"
+    }
+  ],
+  "contactInfo": [
+    {
+      "label": "Phone",
+      "link": "tel:012377894",
+      "content": "012 378 9484",
+      "imgSrc": "instagram.svg"
+    },
+    {
+      "label": "Email",
+      "link": "mailto:example@gmail.com",
+      "content": "example@gmail.com",
+      "imgSrc": "instagram.svg"
+    }
+  ],
+  "socialMedia": [
+    {
+      "label": "x",
+      "link": "#",
+      "imgSrc": "x-white.svg"
+    },
+    {
+      "label": "facebook",
+      "link": "#",
+      "imgSrc": "facebook-white.svg"
+    },
+    {
+      "label": "instagram",
+      "link": "#",
+      "imgSrc": "instagram-white.svg"
+    },
+    {
+      "label": "linkedin",
+      "link": "#",
+      "imgSrc": "linkedin-white.svg"
+    }
+  ],
+  "HeaderInsertion": "",
+  "BodyInsertion": "",
+  "FooterInsertion": "",
+  "SideNavBar": "",
+  "listOfAuthrizedImgDomain": ["cloudnary.com"]
+}

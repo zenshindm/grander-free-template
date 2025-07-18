@@ -1,0 +1,136 @@
+---
+import ActionButton from "@/features/base/ActionButton.astro";
+import { Image } from "astro:assets";
+
+const { subTitle, Title, Description, heroImg, ctaText, ctaLink, infoData } =
+  Astro.props;
+import { getLocalAssetsImg } from "@/features/base/utilities";
+---
+
+<section class="lg:h-[772px] border-b border-border relative isolate">
+  <div
+    class="container flex items-center h-full py-[30px] md:pt-[50px] md:pb-10 lg:py-0"
+  >
+    <div class="w-full lg:w-[46%]">
+      <p class="text-accent text-base/[1.5]">{subTitle}</p>
+      <h1
+        class="text-2xl/[1.3] md:text-[52px]/[1.3] font-medium md:mb-[18px] my-2.5 md:mt-3"
+      >
+        {Title}
+      </h1>
+      <p class="w-full md:w-[70%] text-base/normal text-accent">
+        {Description}
+      </p>
+
+      <ActionButton
+        class="block w-max mt-[30px] md:mt-10"
+        text={ctaText}
+        type="primary"
+        href={ctaLink}
+      />
+
+      <div class="mt-11 hidden md:flex items-center gap-[15px]">
+        {
+          infoData.map((item: { info: string }) => (
+            <div class="flex items-center gap-2">
+              <span class="size-[18px] rounded-full bg-base-200 flex items-center justify-center shrink-0">
+                <svg
+                  width="8"
+                  height="7"
+                  viewBox="0 0 8 7"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.00014 4.01923L2.84629 5.86539L7.46168 1.25"
+                    stroke="black"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+
+              <span class="text-black">{item.info}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="lg:absolute top-0 right-0 w-full h-120 lg:w-1/2 lg:h-[772px] bg-primary overflow-hidden"
+  >
+    <Image
+      class="lg:max-w-full w-full h-full object-cover hero-image"
+      src={getLocalAssetsImg(heroImg)}
+      width="1100"
+      height="800"
+      alt="Hero img"
+      data-animate
+      loading="eager"
+      format="avif"
+    />
+  </div>
+
+  <div class="container md:hidden py-5">
+    <div class="flex items-center justify-center gap-[15px]">
+      {
+        infoData.map((item: { info: string }) => (
+          <div class="flex items-center gap-2">
+            <span class="size-[18px] rounded-full bg-base-200 flex items-center justify-center shrink-0">
+              <svg
+                width="8"
+                height="7"
+                viewBox="0 0 8 7"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.00014 4.01923L2.84629 5.86539L7.46168 1.25"
+                  stroke="black"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+
+            <span class="text-black text-xs/normal">{item.info}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+<style>
+  .hero-image {
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+  }
+
+  .hero-image.animate {
+    animation: showOnHeadingLeft 0.5s ease-in-out forwards;
+  }
+
+  @keyframes showOnHeadingLeft {
+    to {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  }
+</style>
+<script>
+  const deImage = document.querySelector(".hero-image[data-animate]");
+
+  if (deImage) {
+    if ((deImage as HTMLImageElement).complete) {
+      deImage.classList.add("animate");
+    } else {
+      deImage.addEventListener("load", () => {
+        deImage.classList.add("animate");
+      });
+
+      deImage.addEventListener("error", () => {
+        console.error("Image failed to load");
+      });
+    }
+  }
+</script>

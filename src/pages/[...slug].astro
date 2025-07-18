@@ -1,0 +1,56 @@
+---
+import sysMutliPageComp from "@/features/sysMutliPageComp.json";
+import { type mutliPageCompType } from "@/features/base/utilities";
+
+const layoutModules = import.meta.glob(["@/features/layouts/*.astro"], {
+  eager: true,
+});
+const layoutMapState: Record<string, any> = {};
+Object.entries(layoutModules).forEach(([path, module]) => {
+  const layoutName = path.split("/").pop()?.replace(".astro", "") || "";
+  layoutMapState[layoutName] = (module as any).default;
+});
+const componentModules = import.meta.glob(["@/features/components/*.astro"], {
+  eager: true,
+});
+const componentMapState: Record<string, any> = {};
+Object.entries(componentModules).forEach(([path, module]) => {
+  const componentName = path.split("/").pop()?.replace(".astro", "") || "";
+  componentMapState[componentName] = (module as any).default;
+});
+
+export async function getStaticPaths() {
+  return sysMutliPageComp.map((page) => ({
+    params: {
+      slug: page.pageName,
+    },
+    props: page,
+  }));
+}
+
+type Props = mutliPageCompType;
+const page = Astro.props;
+---
+
+{
+  () => {
+    const Layout = layoutMapState[page.PageLayout];
+    return (
+      <Layout
+        title={page.pageTitle}
+        description={page.pageDescription}
+        heroImage={page.PageImage}
+      >
+        {page.compData.map((componentData, index) => {
+          const { componentModule, data } = componentData;
+          const Component = componentMapState[componentModule];
+          return (
+            <div id={`${index + 1}`}>
+              <Component {...data} />
+            </div>
+          );
+        })}
+      </Layout>
+    );
+  }
+}

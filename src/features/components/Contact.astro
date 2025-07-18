@@ -1,0 +1,135 @@
+---
+import { Image } from "astro:assets";
+import { getLocalAssetsImg } from "@/features/base/utilities";
+import websiteSetting from "@/features/websiteSetting.json";
+const { subTitle, title, description, contactImg } = Astro.props;
+---
+
+<section class="section-space">
+  <div class="container">
+    <span class="subTitleThing">{subTitle}</span>
+    <h2
+      class="text-[26px] md:text-[2rem] lg:text-[34px] leading-normal mt-1 mb-5"
+    >
+      {title}
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 border border-border">
+      <div class="p-2.5 sm:p-5">
+        <p class="mb-7 max-w-md">{description}</p>
+        {
+          websiteSetting.listOfAddress.length === 0 ? null : (
+            <>
+              <div class="footer-title text-muted">Address</div>
+              {websiteSetting.listOfAddress.map((address) => (
+                <div class="mb-5">
+                  <p class="font-bold">{address.companyName}</p>
+                  <p>{address.line1Address}</p>
+                  <p>{address.line2Address}</p>
+                  <p>{address.line3Address}</p>
+                </div>
+              ))}
+            </>
+          )
+        }
+        {
+          websiteSetting.contactInfo.length === 0 ? null : (
+            <nav class="mt-3 mb-5">
+              <div class="footer-title text-muted">Contact Info</div>
+              {websiteSetting.contactInfo.map(
+                (contact: {
+                  label: string;
+                  link: string;
+                  content: string;
+                  imgSrc: string;
+                }) => (
+                  <div class="flex space-x-2">
+                    <span>{contact.label}: </span>
+                    <a class="" target="_blank" href={contact.link}>
+                      {contact.content}
+                    </a>
+                  </div>
+                )
+              )}
+            </nav>
+          )
+        }
+        {
+          websiteSetting.socialMedia.length === 0 ? null : (
+            <nav class="mb-5">
+              <div class="footer-title text-muted">Social</div>
+              <div class="flex flex-warp gap-4">
+                {websiteSetting.socialMedia.map(
+                  (social: { label: string; link: string; imgSrc: string }) => (
+                    <a
+                      target="_blank"
+                      href={social.link}
+                      class="btnAction1 bg-secondary rounded-full w-9 h-9 flex justify-center items-center"
+                    >
+                      <Image
+                        height="14"
+                        src={getLocalAssetsImg(social.imgSrc)}
+                        alt="social logo"
+                        format="avif"
+                      />
+                    </a>
+                  )
+                )}
+              </div>
+            </nav>
+          )
+        }
+      </div>
+      <div class="w-full h-full bg-primary overflow-hidden">
+        <Image
+          width="800"
+          height="512"
+          class="w-full h-full object-cover hero-image"
+          src={getLocalAssetsImg(contactImg)}
+          width="1080"
+          height="1158"
+          alt="Hero img"
+          data-animate
+          loading="eager"
+          format="avif"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .hero-image {
+    /* Initial state - hidden */
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+  }
+
+  .hero-image.animate {
+    /* Animation when loaded */
+    animation: showOnHeadingLeft 0.5s ease-in-out forwards;
+  }
+
+  @keyframes showOnHeadingLeft {
+    to {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  }
+</style>
+<script>
+  const deImage = document.querySelector(".hero-image[data-animate]");
+
+  if (deImage) {
+    // If image is already loaded (cached)
+    if ((deImage as HTMLImageElement).complete) {
+      deImage.classList.add("animate");
+    } else {
+      // Wait for load
+      deImage.addEventListener("load", () => {
+        deImage.classList.add("animate");
+      });
+
+      // Optional: Handle error case
+      deImage.addEventListener("error", () => {
+        console.error("Image failed to load");
+      });
+    }
+  }
+</script>

@@ -1,0 +1,94 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "grander";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-base-100: oklch(1 0 0);
+  --color-base-200: oklch(0.97 0.0045 78.3);
+  --color-base-300: oklch(0.13 0.0274 261.69);
+  --color-base-content: oklch(0 0 0);
+  --color-primary: oklch(0.69 0.1921 44.91);
+  --color-primary-content: oklch(0 0 0);
+  --color-secondary: oklch(0.34 0.0538 170.59);
+  --color-secondary-content: oklch(0.98 0.0017 247.84);
+  --color-accent: oklch(0.32 0 0);
+  --color-accent-content: oklch(0.98 0.0017 247.84);
+  --color-muted: oklch(0.61 0.0415 177.28);
+  --color-muted-content: oklch(0.71 0.0192 261.32);
+  --color-neutral: oklch(0.13 0.0274 261.69);
+  --color-neutral-content: oklch(0.98 0.0017 247.84);
+  --color-info: oklch(70% 0.2 220);
+  --color-info-content: oklch(98% 0.01 220);
+  --color-success: oklch(65% 0.25 140);
+  --color-success-content: oklch(98% 0.01 140);
+  --color-warning: oklch(80% 0.25 80);
+  --color-warning-content: oklch(20% 0.05 80);
+  --color-error: oklch(65% 0.3 30);
+  --color-error-content: oklch(98% 0.01 30);
+
+  --radius-selector: 1rem;
+  --radius-field: 0.25rem;
+  --radius-box: 2.5rem;
+
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  --border: 1px;
+
+  --depth: 1;
+  --noise: 0;
+}
+
+@theme {
+  --font-inter: "Inter Tight", "sans-serif";
+}
+
+@layer base {
+  .container {
+    @apply w-full max-w-[1336px] px-[20px] mx-auto;
+  }
+  .container2 {
+    @apply w-full max-w-3xl px-[20px] mx-auto;
+  }
+  .section-space {
+    @apply my-12 lg:my-20;
+  }
+  .section-topspace {
+    @apply mt-7 md:mt-12 lg:mt-16;
+  }
+  p {
+    @apply leading-5;
+  }
+
+  .btnAction1 {
+    @apply text-white block w-max transition-colors duration-300 hover:text-primary;
+  }
+
+  .subTitleThing {
+    @apply inline-block w-max border-2 border-current text-secondary py-1.5 px-3.5 text-xs/none sm:text-sm/none rounded-lg;
+  }
+
+  .rightSlide {
+    @apply bg-primary overflow-hidden;
+  }
+
+  .rightSlide > img {
+    transform: translate(0, 20px);
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+  }
+
+  .rightSlide.animate > img {
+    animation: slideLeftAni 0.5s ease-in-out forwards;
+  }
+
+  @keyframes slideLeftAni {
+    to {
+      transform: translate(0, 0px);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+  }
+}

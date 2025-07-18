@@ -1,0 +1,89 @@
+---
+import ActionButton from "@/features/base/ActionButton.astro";
+import { Image } from "astro:assets";
+
+const {
+  subTitle,
+  title,
+  paragraph1,
+  paragraph2,
+  ctaText,
+  ctaLink,
+  State1Value,
+  State1Label,
+  State2Value,
+  State2Label,
+  aboutImg,
+} = Astro.props;
+import { getLocalAssetsImg } from "@/features/base/utilities";
+---
+
+<section class="section-space">
+  <div
+    class="container grid grid-cols-1 lg:grid-cols-[30%_1fr] gap-10 lg:gap-[160px]"
+  >
+    <div>
+      <span
+        class="subTitleThing"
+        >{subTitle}</span
+      >
+      <h2 class="text-[26px] md:text-[2rem] lg:text-[34px] leading-normal mt-1">
+        {title}
+      </h2>
+
+      <div
+        class="space-y-2.5 md:space-y-[25px] text-base/normal text-accent my-[30px] md:my-[60px]"
+      >
+        <p>
+          {paragraph1}
+        </p>
+
+        <p>
+          {paragraph2}
+        </p>
+      </div>
+
+      <ActionButton
+        class="block w-max"
+        href={ctaLink}
+        text={ctaText}
+        type="primary"
+      />
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-[62%_1fr]">
+      <div class="pt-20 md:pt-[120px] grid grid-cols-[40%_1fr]">
+        <div>
+          <div class="bg-base-200 py-5 px-3 md:p-[35px] space-y-7">
+            <p class="text-4xl/none md:text-[50px]/none">{State1Value}</p>
+            <p class="text-xs/normal md:text-sm/normal">
+              {State1Label}
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-[140px] md:pt-[190px]">
+          <div
+            class="bg-base-200 py-5 px-3 md:py-[35px] md:px-[30px] space-y-[50px] md:space-y-[100px]"
+          >
+            <p class="text-4xl/none md:text-[50px]/none">{State2Value}</p>
+            <p class="text-xs/normal md:text-sm/normal">
+              {State2Label}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative rightSlide h-auto sm:h-[220px] md:h-[310px]" data-animation="rightSlide">
+        <Image
+          width="350"
+          height="310"
+          class="w-full h-full object-cover"
+          data-animate
+          src={getLocalAssetsImg(aboutImg)}
+          alt="about-img"
+          format="avif"
+        />
+      </div>
+    </div>
+  </div>
+</section>

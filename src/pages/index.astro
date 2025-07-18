@@ -1,0 +1,47 @@
+---
+import sysHomePageComp from "@/features/sysHomePageComp.json";
+import { type homePageCompType } from "@/features/base/utilities";
+
+type Props = homePageCompType;
+const layoutModules = import.meta.glob(["@/features/layouts/*.astro"], {
+  eager: true,
+});
+const layoutMapState: Record<string, any> = {};
+Object.entries(layoutModules).forEach(([path, module]) => {
+  const layoutName = path.split("/").pop()?.replace(".astro", "") || "";
+  layoutMapState[layoutName] = (module as any).default;
+});
+const componentModules = import.meta.glob(["@/features/components/*.astro"], {
+  eager: true,
+});
+const componentMapState: Record<string, any> = {};
+Object.entries(componentModules).forEach(([path, module]) => {
+  const componentName = path.split("/").pop()?.replace(".astro", "") || "";
+  componentMapState[componentName] = (module as any).default;
+});
+---
+
+{
+  () => {
+    const Layout = layoutMapState[sysHomePageComp.PageLayout];
+    return (
+      <Layout
+        title={sysHomePageComp.pageTitle}
+        description={sysHomePageComp.pageDescription}
+        heroImage={sysHomePageComp.PageImage}
+      >
+        {sysHomePageComp.compData.map((componentData, index) => {
+          const { componentModule, data } = componentData;
+          const Component = componentMapState[componentModule];
+          return (
+            <div id={`${index + 1}`}>
+              <Component
+                {...(typeof data === "object" && data !== null ? data : {})}
+              />
+            </div>
+          );
+        })}
+      </Layout>
+    );
+  }
+}

@@ -1,0 +1,69 @@
+---
+import { Image } from "astro:assets";
+import { getLocalAssetsImg } from "@/features/base/utilities";
+
+type Service = {
+  link: string;
+  icon: string;
+  photo: string;
+  title: string;
+  description: string;
+};
+
+const { subTitle, title, servicelist } = Astro.props;
+---
+
+<section class="section-space">
+  <div class="container">
+    <span
+      class="subTitleThing"
+    >
+      {subTitle}
+    </span>
+    <h2
+      class="text-[26px] md:text-[2rem] lg:text-[34px] leading-normal mt-1 mb-5"
+    >
+      {title}
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px]">
+      {
+        servicelist.map((service: Service) => (
+          <a
+            href={service.link}
+            class="p-[30px] border border-border hover:border-black transition-all duration-300 group/service"
+          >
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg/normal">{service.title}</h3>
+
+              <div class="size-[60px] rounded-full bg-base-200 flex items-center justify-center">
+                <Image
+                  width="24"
+                  height="24"
+                  class="size-6"
+                  src={getLocalAssetsImg(service.icon)}
+                  alt="service icon"
+                  format="avif"
+                />
+              </div>
+            </div>
+
+            <div class="my-5 overflow-hidden rightSlide">
+              <Image
+                width="420"
+                height="285"
+                class="transition-all duration-300 group-hover/service:scale-[1.02]"
+                src={getLocalAssetsImg(service.photo)}
+                alt={service.title}
+                format="avif"
+              />
+            </div>
+            <p class="text-base text-accent line-clamp-3">
+              {service.description}
+            </p>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

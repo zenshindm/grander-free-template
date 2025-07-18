@@ -1,0 +1,273 @@
+{
+  "pageTitle": "Professional Business Solutions for All",
+  "pageDescription": "Transform your online presence with our sleek business website template. Perfect for startups, agencies, and corporate brands",
+  "PageImage": "business.jpg",
+  "PageLayout": "DefaultLayout",
+  "compData": [
+    {
+      "componentName": "Hero Components",
+      "componentModule": "Hero",
+      "componentImg": "hero.png",
+      "data": {
+        "subTitle": "Business Service",
+        "Title": "Professional Business Solutions for All",
+        "Description": "Transform your online presence with our sleek business website template. Perfect for startups, agencies, and corporate brands.",
+        "ctaText": "Get Started",
+        "ctaLink": "#",
+        "heroImg": "hero-bg1.jpg",
+        "infoData": [
+          { "info": "Fully Responsive Design" },
+          { "info": "Easy Customization" },
+          { "info": "SEO-Optimized Structure" }
+        ]
+      },
+      "props": [
+        { "label": "Sub Title Field", "widget": "input", "name": "subTitle" },
+        { "label": "Title Field", "widget": "input", "name": "Title" },
+        {
+          "label": "Description Field",
+          "widget": "input",
+          "name": "Description"
+        },
+        { "label": "CTA Text Field", "widget": "input", "name": "ctaText" },
+        { "label": "CTA Link Field", "widget": "input", "name": "ctaLink" },
+        { "label": "Hero Image Field", "widget": "img", "name": "heroImg" },
+        {
+          "label": "Info Data Field",
+          "widget": "array",
+          "name": "infoData",
+          "arrayWidget": [
+            { "label": "Info Field", "widget": "input", "name": "info" }
+          ]
+        }
+      ]
+    },
+    {
+      "componentName": "About Components",
+      "componentModule": "About",
+      "componentImg": "about.png",
+      "data": {
+        "subTitle": "Who we are",
+        "title": "About Us",
+        "paragraph1": "We are a dedicated team of professionals committed to delivering excellence in everything we do. With years of experience in our industry, we take pride in offering innovative solutions tailored to meet the unique needs of our clients.",
+        "paragraph2": "Our mission is to help businesses thrive by providing high-quality services, cutting-edge strategies, and a customer-first approach. Whether you're a startup or an established enterprise, we’re here to support your growth every step of the way.",
+        "ctaText": "About Us",
+        "ctaLink": "#",
+        "State1Value": "10+",
+        "State1Label": "Number of Happy Customer",
+        "State2Value": "10+",
+        "State2Label": "Number of Store",
+        "aboutImg": "aboutHero.jpg"
+      },
+      "props": [
+        {
+          "label": "Sub Title Field",
+          "widget": "input",
+          "name": "subTitle"
+        },
+        {
+          "label": "Title Field",
+          "widget": "input",
+          "name": "Title"
+        },
+        {
+          "label": "First Paragraph Field",
+          "widget": "TextArea",
+          "name": "paragraph1"
+        },
+        {
+          "label": "Second Paragraph Field",
+          "widget": "TextArea",
+          "name": "paragraph2"
+        },
+        {
+          "label": "CTA Text Field",
+          "widget": "input",
+          "name": "ctaText"
+        },
+        {
+          "label": "CTA Link Field",
+          "widget": "input",
+          "name": "ctaLink"
+        },
+        {
+          "label": "State 1 Value Field",
+          "widget": "input",
+          "name": "State1Value"
+        },
+        {
+          "label": "State 1 Label Field",
+          "widget": "input",
+          "name": "State1Label"
+        },
+        {
+          "label": "State 2 Value Field",
+          "widget": "input",
+          "name": "State2Value"
+        },
+        {
+          "label": "State 2 Label Field",
+          "widget": "input",
+          "name": "State2Label"
+        },
+        {
+          "label": "About Image Field",
+          "widget": "img",
+          "name": "aboutImg"
+        }
+      ]
+    },
+    {
+      "componentName": "Services Components",
+      "componentModule": "Services",
+      "componentImg": "service.png",
+      "data": {
+        "subTitle": "What We Do",
+        "title": "Our Services",
+        "servicelist": [
+          {
+            "title": "Professional Consulting",
+            "description": "Our expert consultants provide tailored strategies to help your business grow, optimize operations, and maximize profitability",
+            "icon": "serviceIcon1.png",
+            "photo": "service1.jpg",
+            "link": "#"
+          },
+          {
+            "title": "Digital Marketing",
+            "description": "Boost your online presence with our comprehensive digital marketing services, including SEO, social media management, and PPC campaigns",
+            "icon": "serviceIcon2.png",
+            "photo": "service2.jpg",
+            "link": "#"
+          },
+          {
+            "title": "Supply Chain Management",
+            "description": "Optimize your operations with our efficient logistics solutions. We handle inventory management, warehousing",
+            "icon": "serviceIcon3.png",
+            "photo": "service3.jpg",
+            "link": "#"
+          }
+        ]
+      },
+      "props": [
+        {
+          "label": "Sub Title Field",
+          "widget": "input",
+          "name": "subTitle"
+        },
+        {
+          "label": "Title Field",
+          "widget": "input",
+          "name": "title"
+        },
+        {
+          "label": "List Of Service Field",
+          "widget": "array",
+          "name": "servicelist",
+          "arrayWidget": [
+            {
+              "label": "Service Title Field",
+              "widget": "input",
+              "name": "title"
+            },
+            {
+              "label": "Service Description Field",
+              "widget": "TextArea",
+              "name": "description"
+            },
+            {
+              "label": "Service icon Field",
+              "widget": "img",
+              "name": "icon"
+            },
+            {
+              "label": "Service photo Field",
+              "widget": "img",
+              "name": "photo"
+            },
+            {
+              "label": "Service Link Field",
+              "widget": "input",
+              "name": "link"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "componentName": "Call 2 Action Components",
+      "componentModule": "CTA",
+      "componentImg": "cta.png",
+      "data": {
+        "title": "Let us help you turn your vision into reality because your success is our success",
+        "priCTAText": "Get Started",
+        "priCTALink": "/contact-us/",
+        "secCTAText": "About Us",
+        "secCTALink": "/about-us/",
+        "ctaImg": "cta.jpg",
+        "statsList": [
+          {
+            "value": "97%",
+            "description": "Satisfaction"
+          },
+          {
+            "value": "50",
+            "description": "Completed Projects"
+          },
+          {
+            "value": "1",
+            "description": "Year of Experience"
+          }
+        ]
+      },
+      "props": [
+        {
+          "label": "Title Field",
+          "widget": "TextArea",
+          "name": "title"
+        },
+        {
+          "label": "Primary CTA Label Field",
+          "widget": "input",
+          "name": "priCTAText"
+        },
+        {
+          "label": "Primary CTA Link Field",
+          "widget": "input",
+          "name": "priCTALink"
+        },
+        {
+          "label": "Secondary CTA Label Field",
+          "widget": "input",
+          "name": "secCTAText"
+        },
+        {
+          "label": "Secondary CTA Link Field",
+          "widget": "input",
+          "name": "secCTALink"
+        },
+        {
+          "label": "CTA Image Field",
+          "widget": "img",
+          "name": "ctaImg"
+        },
+        {
+          "label": "Stats List Field",
+          "widget": "array",
+          "name": "statsList",
+          "arrayWidget": [
+            {
+              "label": "Stats Value Field",
+              "widget": "input",
+              "name": "value"
+            },
+            {
+              "label": "Stats Description Field",
+              "widget": "TextArea",
+              "name": "description"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
