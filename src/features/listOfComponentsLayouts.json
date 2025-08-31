@@ -71,7 +71,7 @@
     },
     {
       "componentName": "About Components",
-      "componentModule": "About",
+      "componentModule": "About1",
       "componentImg": "about.png",
       "data": {
         "subTitle": "Who we are",
@@ -298,7 +298,7 @@
     },
     {
       "componentName": "Contact Components",
-      "componentModule": "Contact",
+      "componentModule": "Contact1",
       "componentImg": "contact.png",
       "data": {
         "subTitle": "Contact",
