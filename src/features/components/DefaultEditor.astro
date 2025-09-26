@@ -1,9 +1,11 @@
 ---
+import { optimizeImagesInString } from "@/features/base/utilities";
 const { content } = Astro.props;
+const optimizedContent = optimizeImagesInString(content);
 ---
 
-<section class="section-space">
-  <div class="container2">
-    <Fragment class="prose" set:html={content} />
+<section class="spaceY">
+  <div class="max-w-4xl mx-auto mobXspace prose">
+    <Fragment class="prose" set:html={optimizedContent} />
   </div>
 </section>
