@@ -298,7 +298,7 @@
     },
     {
       "componentName": "Contact Components",
-      "componentModule": "Contact1",
+      "componentModule": "Contact",
       "componentImg": "contact.png",
       "data": {
         "subTitle": "Contact",
