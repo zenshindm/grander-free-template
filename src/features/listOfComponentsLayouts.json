@@ -71,7 +71,7 @@
     },
     {
       "componentName": "About Components",
-      "componentModule": "About1",
+      "componentModule": "About",
       "componentImg": "about.png",
       "data": {
         "subTitle": "Who we are",
