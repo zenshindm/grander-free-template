@@ -2,6 +2,11 @@
 import websiteSetting from "@/features/websiteSetting.json";
 import { Image } from "astro:assets";
 import { getLocalAssetsImg } from "@/features/base/utilities";
+type Info = {
+  platform: string;
+  link: string;
+  icon: string;
+};
 ---
 
 <footer
@@ -10,7 +15,7 @@ import { getLocalAssetsImg } from "@/features/base/utilities";
   <aside>
     <a href="/">
       <Image
-        src={getLocalAssetsImg(websiteSetting.websiteLogo2.src)}
+        src={getLocalAssetsImg(websiteSetting.websiteLogo2.image)}
         alt="navbarlogo"
         format="avif"
       />
@@ -55,19 +60,14 @@ import { getLocalAssetsImg } from "@/features/base/utilities";
       <nav>
         <div class="footer-title text-muted">Contact Info</div>
         {websiteSetting.contactInfo.map(
-          (contact: {
-            label: string;
-            link: string;
-            content: string;
-            imgSrc: string;
-          }) => (
+          (contact: { platform: string; link: string; label: string }) => (
             <div class="flex space-x-2">
-              <span>{contact.label}: </span>
-              <a target="_blank" href={contact.link}>
-                {contact.content}
+              <span>{contact.platform}: </span>
+              <a target="_blank" rel="noopener noreferrer" href={contact.link}>
+                {contact.label}
               </a>
             </div>
-          )
+          ),
         )}
       </nav>
     )
@@ -77,17 +77,11 @@ import { getLocalAssetsImg } from "@/features/base/utilities";
       <nav>
         <div class="footer-title text-muted">Social</div>
         <div class="flex flex-warp gap-4">
-          {websiteSetting.socialMedia.map(
-            (social: { label: string; link: string; imgSrc: string }) => (
-              <a target="_blank" href={social.link} class="btnAction1">
-                <Image
-                  src={getLocalAssetsImg(social.imgSrc)}
-                  alt="social logo"
-                  format="avif"
-                />
-              </a>
-            )
-          )}
+          {websiteSetting.socialMedia.map((link: Info) => (
+            <a target="_blank" rel="noopener noreferrer" href={link.link}>
+              <span class={`${link.icon} size-4`} />
+            </a>
+          ))}
         </div>
       </nav>
     )
@@ -147,7 +141,7 @@ import { getLocalAssetsImg } from "@/features/base/utilities";
     },
     {
       threshold: 1,
-    }
+    },
   );
 
   imageContainers.forEach((container) => {

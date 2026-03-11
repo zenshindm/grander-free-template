@@ -1,11 +1,16 @@
 ---
-import { Image } from "astro:assets";
-import { getLocalAssetsImg } from "@/features/base/utilities";
+import ImgComp from "@/features/base/ImgComp.astro";
 
 type Service = {
   link: string;
-  icon: string;
-  photo: string;
+  icon: {
+    src: string;
+    alt: string;
+  };
+  photo: {
+    src: string;
+    alt: string;
+  };
   title: string;
   description: string;
 };
@@ -15,9 +20,7 @@ const { subTitle, title, servicelist } = Astro.props;
 
 <section class="section-space">
   <div class="container">
-    <span
-      class="subTitleThing"
-    >
+    <span class="subTitleThing">
       {subTitle}
     </span>
     <h2
@@ -37,25 +40,21 @@ const { subTitle, title, servicelist } = Astro.props;
               <h3 class="text-lg/normal">{service.title}</h3>
 
               <div class="size-[60px] rounded-full bg-base-200 flex items-center justify-center">
-                <Image
+                <ImgComp
                   width="24"
                   height="24"
                   class="size-6"
-                  src={getLocalAssetsImg(service.icon)}
-                  alt="service icon"
-                  format="avif"
+                  img={service.icon}
                 />
               </div>
             </div>
 
             <div class="my-5 overflow-hidden rightSlide">
-              <Image
+              <ImgComp
                 width="420"
                 height="285"
                 class="transition-all duration-300 group-hover/service:scale-[1.02]"
-                src={getLocalAssetsImg(service.photo)}
-                alt={service.title}
-                format="avif"
+                img={service.photo}
               />
             </div>
             <p class="text-base text-accent line-clamp-3">

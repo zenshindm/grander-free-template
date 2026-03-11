@@ -1,0 +1,36 @@
+---
+import { getLocalAssetsImg } from "./utilities";
+import { Image } from "astro:assets";
+
+const {
+  img = {
+    src: "",
+    alt: "",
+  },
+  class: className = "",
+  ...rest
+} = Astro.props;
+if (img.src === "") {
+  throw new Error("Img source is required");
+}
+const isHttpUrl =
+  typeof img.src === "string" &&
+  (img.src.startsWith("http://") || img.src.startsWith("https://"));
+const FinalImg = await getLocalAssetsImg(img);
+const isSvg =
+  typeof img.src === "string" && img.src.toLowerCase().endsWith(".svg");
+---
+
+{
+  isSvg && !isHttpUrl ? (
+    <FinalImg class={`${className}`} {...rest} />
+  ) : (
+    <Image
+      src={FinalImg}
+      alt={img.alt}
+      format="avif"
+      class={`${className}`}
+      {...rest}
+    />
+  )
+}

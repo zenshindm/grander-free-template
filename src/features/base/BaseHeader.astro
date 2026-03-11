@@ -1,25 +1,36 @@
 ---
-import "../../styles/global.css";
+import "@/global.css";
 import websiteSetting from "@/features/websiteSetting.json";
 import { getLocalAssetsImg } from "@/features/base/utilities";
 import { getImage } from "astro:assets";
-import '@fontsource-variable/inter-tight';
-interface Props {
-  title: string;
-  description: string;
-  image?: string;
-}
+import { AstroFont } from "astro-font";
 
-const {
-  title = websiteSetting.defaultTitle,
-  description = websiteSetting.defaultDescription,
-  image = websiteSetting.defaultMetaImage,
-} = Astro.props;
+const { title, description, image } = Astro.props;
 
-const findSourceImage = await getLocalAssetsImg(image);
+const finalTitle = !title || title === "" ? websiteSetting.defaultTitle : title;
+const finalDescription =
+  !description || description === ""
+    ? websiteSetting.defaultDescription
+    : description;
+const finalImage =
+  !image || image.src === "" ? websiteSetting.defaultMetaImage : image;
+
+const findSourceImage = await getLocalAssetsImg(finalImage);
 const findFavSourceImage = await getLocalAssetsImg(
-  websiteSetting.websiteFavicon
+  websiteSetting.websiteFavicon,
 );
+
+const isSvg = websiteSetting.websiteFavicon.src.toLowerCase().endsWith(".svg");
+
+const optimizedFavImg = isSvg
+  ? findFavSourceImage
+  : await getImage({
+      src: findFavSourceImage,
+      width: 48,
+      height: 48,
+      format: "png",
+    });
+
 const optimizedMetaImage = await getImage({
   src: findSourceImage,
   width: 1200,
@@ -28,33 +39,29 @@ const optimizedMetaImage = await getImage({
   quality: 80,
 });
 
-const optimizedFavImg = await getImage({
-  src: findFavSourceImage,
-  width: 50,
-  height: 50,
-});
-
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
-<!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href={optimizedFavImg.src} />
+<link
+  rel="icon"
+  {...isSvg ? { type: "image/svg+xml" } : {}}
+  href={isSvg ? findFavSourceImage.src : optimizedFavImg.src}
+/>
 
-<!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Primary Meta Tags -->
-<title>{title}</title>
-<meta name="title" content={title} />
-<meta name="description" content={description} />
+<title>{finalTitle}</title>
+<meta name="title" content={finalTitle} />
+<meta name="description" content={finalDescription} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
+<meta property="og:title" content={finalTitle} />
+<meta property="og:description" content={finalDescription} />
 <meta
   property="og:image"
   content={new URL(optimizedMetaImage.src, Astro.url)}
@@ -63,11 +70,48 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
+<meta property="twitter:title" content={finalTitle} />
+<meta property="twitter:description" content={finalDescription} />
 <meta
   property="twitter:image"
   content={new URL(optimizedMetaImage.src, Astro.url)}
 />
 
-<Fragment set:html={websiteSetting.HeaderInsertion} />
+<div>
+  <Fragment set:html={websiteSetting.HeaderInsertion} />
+</div>
+
+{
+  websiteSetting.bodyFont.link !== "" ? (
+    <AstroFont
+      config={[
+        {
+          src: [],
+          name: websiteSetting.bodyFont.name,
+          googleFontsURL: websiteSetting.bodyFont.link,
+          preload: true,
+          display: "swap",
+          selector: "body",
+          fallback: "sans-serif",
+        },
+      ]}
+    />
+  ) : null
+}
+{
+  websiteSetting.headerFont.link !== "" ? (
+    <AstroFont
+      config={[
+        {
+          src: [],
+          name: websiteSetting.headerFont.name,
+          googleFontsURL: websiteSetting.headerFont.link,
+          preload: true,
+          display: "swap",
+          selector: "h1, h2, h3, h4, h5, h6",
+          fallback: "serif",
+        },
+      ]}
+    />
+  ) : null
+}

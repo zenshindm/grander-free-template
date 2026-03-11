@@ -1,17 +1,9 @@
 ---
 import ActionButton from "@/features/base/ActionButton.astro";
-import { Image } from "astro:assets";
-import { getLocalAssetsImg } from "@/features/base/utilities";
+import ImgComp from "@/features/base/ImgComp.astro";
 
-const {
-  title,
-  priCTAText,
-  priCTALink,
-  secCTAText,
-  secCTALink,
-  ctaImg,
-  statsList,
-} = Astro.props;
+
+const { title, priBtn, secBtn, ctaImg, statsList } = Astro.props;
 ---
 
 <section
@@ -25,14 +17,14 @@ const {
         </h2>
 
         <div class="mt-[25px] md:mt-[30px] lg:mt-10 flex gap-[15px]">
-          <ActionButton text={priCTAText} href={priCTALink} type="primary" />
           {
-            secCTAText === "" ? null : (
-              <ActionButton
-                text={secCTAText}
-                href={secCTALink}
-                type="outline"
-              />
+            priBtn.content === "" ? null : (
+              <ActionButton button={priBtn} type="primary" />
+            )
+          }
+          {
+            secBtn.content === "" ? null : (
+              <ActionButton button={secBtn} type="outline" />
             )
           }
         </div>
@@ -60,14 +52,12 @@ const {
   <div
     class="md:absolute top-0 h-full relative right-0 w-full md:w-[42%] lg:w-[46%] -z-[1] rightSlide"
   >
-    <Image
+    <ImgComp
       width="1100"
       height="600"
       class="max-w-full w-full h-[260px] md:h-full object-cover"
       data-animate
-      src={getLocalAssetsImg(ctaImg)}
-      alt="about-img"
-      format="avif"
+      img={ctaImg}
     />
   </div>
 </section>

@@ -1,10 +1,8 @@
 ---
 import ActionButton from "@/features/base/ActionButton.astro";
-import { Image } from "astro:assets";
+import ImgComp from "@/features/base/ImgComp.astro";
 
-const { subTitle, Title, Description, heroImg, ctaText, ctaLink, infoData } =
-  Astro.props;
-import { getLocalAssetsImg } from "@/features/base/utilities";
+const { subTitle, Title, Description, heroImg, button, infoData } = Astro.props;
 ---
 
 <section class="lg:h-[772px] border-b border-border relative isolate">
@@ -21,13 +19,15 @@ import { getLocalAssetsImg } from "@/features/base/utilities";
       <p class="w-full md:w-[70%] text-base/normal text-accent">
         {Description}
       </p>
-
-      <ActionButton
-        class="block w-max mt-[30px] md:mt-10"
-        text={ctaText}
-        type="primary"
-        href={ctaLink}
-      />
+      {
+        button.content === "" ? null : (
+          <ActionButton
+            class="block w-max mt-[30px] md:mt-10"
+            button={button}
+            type="primary"
+          />
+        )
+      }
 
       <div class="mt-11 hidden md:flex items-center gap-[15px]">
         {
@@ -61,12 +61,11 @@ import { getLocalAssetsImg } from "@/features/base/utilities";
   <div
     class="lg:absolute top-0 right-0 w-full h-120 lg:w-1/2 lg:h-[772px] bg-primary overflow-hidden"
   >
-    <Image
+    <ImgComp
       class="lg:max-w-full w-full h-full object-cover hero-image"
-      src={getLocalAssetsImg(heroImg)}
+      img={heroImg}
       width="1100"
       height="800"
-      alt="Hero img"
       data-animate
       loading="eager"
       format="avif"

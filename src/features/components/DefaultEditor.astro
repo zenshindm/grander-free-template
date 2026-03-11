@@ -5,7 +5,23 @@ const optimizedContent = optimizeImagesInString(content);
 ---
 
 <section class="spaceY">
-  <div class="max-w-4xl mx-auto mobXspace prose">
+  <div class="container2 prose">
     <Fragment class="prose" set:html={optimizedContent} />
   </div>
 </section>
+
+<style>
+  @reference "tailwindcss";
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-base-content;
+  }
+  p,
+  li {
+    @apply text-base-content/80;
+  }
+</style>

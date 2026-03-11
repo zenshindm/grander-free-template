@@ -14,7 +14,7 @@ import { getLocalAssetsImg } from "@/features/base/utilities";
     <div class="flex items-center justify-between">
       <a href="/">
         <Image
-          src={getLocalAssetsImg(websiteSetting.websiteLogo1.src)}
+          src={getLocalAssetsImg(websiteSetting.websiteLogo1.image)}
           alt="navbarlogo"
           format="avif"
         />
@@ -70,12 +70,11 @@ import { getLocalAssetsImg } from "@/features/base/utilities";
         <div class="flex space-x-4 items-center">
           <NavBarSide />
           {
-            websiteSetting.ctaLink.label === "" ? null : (
+            websiteSetting.ctaLink.content === "" ? null : (
               <ActionButton
                 class="text-center"
-                text={websiteSetting.ctaLink.label}
+                button={websiteSetting.ctaLink}
                 type="outline-nav"
-                href={websiteSetting.ctaLink.link}
               />
             )
           }
@@ -87,7 +86,7 @@ import { getLocalAssetsImg } from "@/features/base/utilities";
 
 <script>
   const menuToggle = document.getElementById(
-    "menu-toggle"
+    "menu-toggle",
   ) as HTMLButtonElement;
 
   const links = document.getElementById("links-wrapper") as HTMLDivElement;

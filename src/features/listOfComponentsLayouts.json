@@ -1,5 +1,8 @@
 {
-  "layouts": ["DefaultPageLayout", "DefaultLayout"],
+  "layouts": [
+    "DefaultPageLayout",
+    "DefaultLayout"
+  ],
   "components": [
     {
       "componentName": "Editor Components",
@@ -39,32 +42,60 @@
         "subTitle": "Business Service",
         "Title": "Professional Business Solutions for All",
         "Description": "Transform your online presence with our sleek business website template. Perfect for startups, agencies, and corporate brands.",
-        "ctaText": "Get Started",
-        "ctaLink": "#",
+        "button": {
+          "content": "Contact Us",
+          "link": "/contact-us/",
+          "ref": ""
+        },
         "heroImg": "hero-bg1.jpg",
         "infoData": [
-          { "info": "Fully Responsive Design" },
-          { "info": "Easy Customization" },
-          { "info": "SEO-Optimized Structure" }
+          {
+            "info": "Fully Responsive Design"
+          },
+          {
+            "info": "Easy Customization"
+          },
+          {
+            "info": "SEO-Optimized Structure"
+          }
         ]
       },
       "props": [
-        { "label": "Sub Title Field", "widget": "input", "name": "subTitle" },
-        { "label": "Title Field", "widget": "input", "name": "Title" },
+        {
+          "label": "Sub Title Field",
+          "widget": "input",
+          "name": "subTitle"
+        },
+        {
+          "label": "Title Field",
+          "widget": "input",
+          "name": "Title"
+        },
         {
           "label": "Description Field",
           "widget": "input",
           "name": "Description"
         },
-        { "label": "CTA Text Field", "widget": "input", "name": "ctaText" },
-        { "label": "CTA Link Field", "widget": "input", "name": "ctaLink" },
-        { "label": "Hero Image Field", "widget": "img", "name": "heroImg" },
+        {
+          "label": "CTA Field",
+          "widget": "btn",
+          "name": "ctaText"
+        },
+        {
+          "label": "Hero Image Field",
+          "widget": "img",
+          "name": "heroImg"
+        },
         {
           "label": "Info Data Field",
           "widget": "array",
           "name": "infoData",
           "arrayWidget": [
-            { "label": "Info Field", "widget": "input", "name": "info" }
+            {
+              "label": "Info Field",
+              "widget": "input",
+              "name": "info"
+            }
           ]
         }
       ]
@@ -78,8 +109,11 @@
         "title": "About Us",
         "paragraph1": "We are a dedicated team of professionals committed to delivering excellence in everything we do. With years of experience in our industry, we take pride in offering innovative solutions tailored to meet the unique needs of our clients.",
         "paragraph2": "Our mission is to help businesses thrive by providing high-quality services, cutting-edge strategies, and a customer-first approach. Whether you're a startup or an established enterprise, we’re here to support your growth every step of the way.",
-        "ctaText": "About Us",
-        "ctaLink": "#",
+        "button": {
+          "content": "About Us",
+          "link": "#",
+          "ref": ""
+        },
         "State1Value": "10+",
         "State1Label": "Number of Happy Customer",
         "State2Value": "10+",
@@ -108,14 +142,9 @@
           "name": "paragraph2"
         },
         {
-          "label": "CTA Text Field",
-          "widget": "input",
+          "label": "CTA Field",
+          "widget": "btn",
           "name": "ctaText"
-        },
-        {
-          "label": "CTA Link Field",
-          "widget": "input",
-          "name": "ctaLink"
         },
         {
           "label": "State 1 Value Field",
@@ -226,10 +255,16 @@
       "componentImg": "cta.png",
       "data": {
         "title": "Let us help you turn your vision into reality because your success is our success",
-        "priCTAText": "Get Started",
-        "priCTALink": "#",
-        "secCTAText": "Our Services",
-        "secCTALink": "#",
+        "priBtn": {
+          "content": "Get Started",
+          "link": "/contact-us/",
+          "ref": ""
+        },
+        "secBtn": {
+          "content": "Our Services",
+          "link": "#",
+          "ref": ""
+        },
         "ctaImg": "cta.jpg",
         "statsList": [
           {
@@ -253,24 +288,14 @@
           "name": "title"
         },
         {
-          "label": "Primary CTA Label Field",
-          "widget": "input",
-          "name": "priCTAText"
+          "label": "Primary CTA Field",
+          "widget": "btn",
+          "name": "priBtn"
         },
         {
-          "label": "Primary CTA Link Field",
-          "widget": "input",
-          "name": "priCTALink"
-        },
-        {
-          "label": "Secondary CTA Label Field",
-          "widget": "input",
-          "name": "secCTAText"
-        },
-        {
-          "label": "Secondary CTA Link Field",
-          "widget": "input",
-          "name": "secCTALink"
+          "label": "Secondary CTA Field",
+          "widget": "btn",
+          "name": "secBtn"
         },
         {
           "label": "CTA Image Field",
@@ -312,7 +337,11 @@
           "widget": "input",
           "name": "subTitle"
         },
-        { "label": "Title Field", "widget": "input", "name": "title" },
+        {
+          "label": "Title Field",
+          "widget": "input",
+          "name": "title"
+        },
         {
           "label": "Description Field",
           "widget": "TextArea",

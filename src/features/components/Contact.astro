@@ -1,8 +1,12 @@
 ---
-import { Image } from "astro:assets";
-import { getLocalAssetsImg } from "@/features/base/utilities";
+import ImgComp from "@/features/base/ImgComp.astro";
 import websiteSetting from "@/features/websiteSetting.json";
 const { subTitle, title, description, contactImg } = Astro.props;
+type Info = {
+  platform: string;
+  link: string;
+  icon: string;
+};
 ---
 
 <section class="section-space">
@@ -37,18 +41,21 @@ const { subTitle, title, description, contactImg } = Astro.props;
               <div class="footer-title text-muted">Contact Info</div>
               {websiteSetting.contactInfo.map(
                 (contact: {
-                  label: string;
+                  platform: string;
                   link: string;
-                  content: string;
-                  imgSrc: string;
+                  label: string;
                 }) => (
                   <div class="flex space-x-2">
-                    <span>{contact.label}: </span>
-                    <a class="" target="_blank" href={contact.link}>
-                      {contact.content}
+                    <span>{contact.platform}: </span>
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={contact.link}
+                    >
+                      {contact.label}
                     </a>
                   </div>
-                )
+                ),
               )}
             </nav>
           )
@@ -58,39 +65,24 @@ const { subTitle, title, description, contactImg } = Astro.props;
             <nav class="mb-5">
               <div class="footer-title text-muted">Social</div>
               <div class="flex flex-warp gap-4">
-                {websiteSetting.socialMedia.map(
-                  (social: { label: string; link: string; imgSrc: string }) => (
-                    <a
-                      target="_blank"
-                      href={social.link}
-                      class="btnAction1 bg-secondary rounded-full w-9 h-9 flex justify-center items-center"
-                    >
-                      <Image
-                        height="14"
-                        src={getLocalAssetsImg(social.imgSrc)}
-                        alt="social logo"
-                        format="avif"
-                      />
-                    </a>
-                  )
-                )}
+                {websiteSetting.socialMedia.map((link: Info) => (
+                  <a target="_blank" rel="noopener noreferrer" href={link.link}>
+                    <span class={`${link.icon} size-4`} />
+                  </a>
+                ))}
               </div>
             </nav>
           )
         }
       </div>
       <div class="w-full h-full bg-primary overflow-hidden">
-        <Image
-          width="800"
-          height="512"
-          class="w-full h-full object-cover hero-image"
-          src={getLocalAssetsImg(contactImg)}
+        <ImgComp
           width="1080"
           height="1158"
-          alt="Hero img"
+          class="w-full h-full object-cover hero-image"
+          img={contactImg}
           data-animate
           loading="eager"
-          format="avif"
         />
       </div>
     </div>

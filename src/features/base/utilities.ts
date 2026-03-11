@@ -1,125 +1,112 @@
-export type listcomponentsAvaiableType = {
-  componentName: string;
-  componentModule: string;
-  componentImg: string;
-  data: any;
-  props: {
-    label: string;
-    widget: string;
-    name: string;
-    optionChoice?: string[];
-  }[];
-};
-
-export type mutliPageCompType = {
-  pageName: string;
-  pageTitle: string;
-  pageDescription: string;
-  PageLayout: string;
-  PageImage: any | null;
-  compData: listComponentsAvailableType[];
-};
-
-export type homePageCompType = {
-  pageTitle: string;
-  pageDescription: string;
-  PageLayout: string;
-  PageImage: any | null;
-  compData: listComponentsAvailableType[];
-};
-
-export type localAssetsImgType = {
-  src: string;
-  width: number;
-  height: number;
-  format: string;
-};
-
-export type listComponentsAvailableType = {
-  componentName: string;
-  componentModule: string;
-  componentImg: string;
-  data: any;
-  props: firstLvlProps[];
-};
-
-type firstLvlProps = InputWidget | OptionWidget | ArrayFirstWidget;
-
-type InputWidget = {
-  label: string;
-  widget: "input" | "TextArea" | "img" | "vid" | "editor" | "code";
-  name: string;
-};
-
-type OptionWidget = {
-  label: string;
-  widget: "option";
-  name: string;
-  optionChoice: string[];
-};
-
-type ArrayFirstWidget = {
-  label: string;
-  widget: "array";
-  name: string;
-  arrayWidget: (InputWidget | OptionWidget | ArraySecondWidget)[];
-};
-
-type ArraySecondWidget = {
-  label: string;
-  widget: "array";
-  name: string;
-  arrayWidget: (InputWidget | OptionWidget)[];
-};
-
+import { z } from "astro/zod";
+import { parse } from "node-html-parser";
+import { getImage } from "astro:assets";
 import { type ImageMetadata } from "astro";
 
-export function getLocalAssetsImg(input: string): any {
-  let isInputaUrl;
-  try {
-    new URL(input);
-    const image = input;
-    isInputaUrl = true;
-    return image;
-  } catch {
-    isInputaUrl = false;
-  }
+export type ArrayWidget = {
+  label: string;
+  widget: "array";
+  name: string;
+  arrayWidget: (InputWidget | OptionWidget | ArrayWidget)[];
+};
+export type InputWidget = z.infer<typeof inputWidgetSchema>;
+export type OptionWidget = z.infer<typeof optionWidgetSchema>;
+export type ComponentType = z.infer<typeof CompTypeSchema>;
+export type PropWiget = InputWidget | OptionWidget | ArrayWidget;
+export const arrayWidgetSchema: z.ZodSchema<ArrayWidget> = z.lazy(() =>
+  z.object({
+    label: z.string(),
+    widget: z.literal("array"),
+    name: z.string(),
+    arrayWidget: z.array(
+      z.union([inputWidgetSchema, optionWidgetSchema, arrayWidgetSchema]),
+    ),
+  }),
+);
+const inputWidgetSchema = z.object({
+  label: z.string(),
+  widget: z.union([
+    z.literal("input"),
+    z.literal("btn"),
+    z.literal("TextArea"),
+    z.literal("vid"),
+    z.literal("img"),
+    z.literal("editor"),
+    z.literal("code"),
+  ]),
+  name: z.string(),
+});
+const optionWidgetSchema = z.object({
+  label: z.string(),
+  widget: z.literal("option"),
+  name: z.string(),
+  option: z.array(
+    z.object({
+      label: z.string(),
+      value: z.string(),
+    }),
+  ),
+});
+export const propWigetSchema = z.union([
+  inputWidgetSchema,
+  optionWidgetSchema,
+  arrayWidgetSchema,
+]);
+export const CompTypeSchema = z.object({
+  componentName: z.string(),
+  componentModule: z.string(),
+  componentImg: z.string(),
+  data: z.any(),
+  props: z.array(propWigetSchema),
+});
+export const listOfCompArraySchema = z.array(CompTypeSchema);
+export const mutliPageTypeSchema = z.object({
+  pageName: z.string(),
+  pageTitle: z.string(),
+  pageDescription: z.string(),
+  pageLayout: z.string(),
+  pageImage: z.string().nullable(),
+  compData: listOfCompArraySchema,
+});
+export const listOfmutliPageTypeSchema = z.array(mutliPageTypeSchema);
+export type MutliPageType = z.infer<typeof mutliPageTypeSchema>;
 
+async function getAllImageImportInAsset() {
   const images = import.meta.glob<{ default: ImageMetadata }>(
-    "/src/assets/*.{jpeg,jpg,png,gif,svg,webp}",
+    "/src/assets/*.{jpeg,jpg,png,gif,svg,webp,avif,tiff}",
     {
       eager: true,
-    }
+    },
   );
-
-  const imagePath = `/src/assets/${input}`;
-  const specificImage = images[imagePath];
-
-  if (!specificImage) {
-    throw new Error(`Image ${imagePath} not found`);
-  }
-  const image = specificImage.default;
-  return image;
+  return images;
 }
 
-import { getImage } from "astro:assets";
-import { parse } from "node-html-parser";
+export async function getLocalAssetsImg(inputWithSrcNAlt: {
+  src: string;
+  alt?: string;
+}): Promise<any> {
+  let input = inputWithSrcNAlt.src;
+  let isInputUrl = false;
 
-interface ImportedImage {
-  default: ImageMetadata;
-}
-const images = import.meta.glob<ImportedImage>(
-  "@/assets/*.{jpeg,jpg,png,gif,svg,webp}",
-  {
-    eager: true,
+  const urlSchema = z.string().url();
+  const result = urlSchema.safeParse(input);
+  if (result.success) {
+    isInputUrl = true;
+    return input;
   }
-);
+  if (isInputUrl === false) {
+    const imageImports = await getAllImageImportInAsset();
 
-const imageImports: Record<string, ImageMetadata> = {};
-Object.entries(images).forEach(([path, module]) => {
-  const assetPath = path.replace("./src", "@");
-  imageImports[assetPath] = module.default;
-});
+    const imagePath = `/src/assets/${input}`;
+    const specificImage = imageImports[imagePath];
+
+    if (!specificImage) {
+      throw new Error(`${input} Image ${imagePath} not found`);
+    }
+    const image = specificImage.default;
+    return image;
+  }
+}
 
 export async function optimizeImagesInString(htmlString: string) {
   const root = parse(htmlString);
@@ -131,8 +118,9 @@ export async function optimizeImagesInString(htmlString: string) {
     if (src) {
       try {
         const deSource = String(`/src/assets/${src}`);
+        const imageImports = await getAllImageImportInAsset();
         const optimizedImage = await getImage({
-          src: imageImports[deSource],
+          src: imageImports[deSource].default,
           width: 900,
           height: 400,
           format: "avif",

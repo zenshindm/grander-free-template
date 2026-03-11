@@ -1,22 +1,29 @@
 ---
 interface Props extends astroHTML.JSX.AnchorHTMLAttributes {
-  text: string;
+  button: {
+    content: string;
+    link: string;
+    ref: string;
+  };
   type?: "outline-nav" | "outline" | "primary";
 }
 
 const {
+  button = {
+    content: "",
+    link: "#",
+    ref: "",
+  },
   type = "outline",
-  text,
   class: classes,
   "class:list": classList,
-  href = "#",
   ...props
 } = Astro.props;
 ---
 
 <a
   {...props}
-  href={href}
+  href={button.link}
   class:list={[
     "text-sm/none transition-[color,background-color] duration-300 uppercase",
 
@@ -37,10 +44,10 @@ const {
 >
   <span class="relative flip-text">
     <span
-      data-text={text}
+      data-text={button.content}
       class="transition-transform duration-300 origin-[50%_0] inline-block relative [transform-style:preserve-3d] before:absolute before:top-full before:left-0 before:w-full before:h-full before:origin-[50%_0] before:[transform:rotateX(-90deg)] before:content-[attr(data-text)]"
     >
-      {text}
+      {button.content}
     </span>
   </span>
 </a>

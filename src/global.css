@@ -1,0 +1,51 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "daisyui";
+@plugin "@iconify/tailwind4";
+@import "./theme.css";
+
+@layer base {
+  .container {
+    @apply w-full max-w-[1336px] px-[20px] mx-auto;
+  }
+  .container2 {
+    @apply w-full max-w-3xl px-2 sm:px-0 mx-auto;
+  }
+  .section-space {
+    @apply my-12 lg:my-20;
+  }
+  .section-topspace {
+    @apply mt-7 md:mt-12 lg:mt-16;
+  }
+  p {
+    @apply leading-5;
+  }
+
+  .btnAction1 {
+    @apply text-white block w-max transition-colors duration-300 hover:text-primary;
+  }
+
+  .subTitleThing {
+    @apply inline-block w-max border-2 border-current text-secondary py-1.5 px-3.5 text-xs/none sm:text-sm/none rounded-lg;
+  }
+
+  .rightSlide {
+    @apply bg-primary overflow-hidden;
+  }
+
+  .rightSlide > img {
+    transform: translate(0, 20px);
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+  }
+
+  .rightSlide.animate > img {
+    animation: slideLeftAni 0.5s ease-in-out forwards;
+  }
+
+  @keyframes slideLeftAni {
+    to {
+      transform: translate(0, 0px);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+  }
+}
