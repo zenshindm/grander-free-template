@@ -19,7 +19,10 @@
             "link": "/contact-us/",
             "ref": ""
           },
-          "heroImg": "hero-bg1.jpg",
+          "heroImg": {
+            "src": "hero-bg1.jpg",
+            "alt": "Hero Image"
+          },
           "infoData": [
             {
               "info": "Fully Responsive Design"
@@ -90,7 +93,10 @@
           "State1Label": "Number of Happy Customer",
           "State2Value": "10+",
           "State2Label": "Number of Store",
-          "aboutImg": "aboutHero.jpg"
+          "aboutImg": {
+            "src": "aboutHero.jpg",
+            "alt": "About Us Image"
+          }
         },
         "props": [
           {
@@ -156,22 +162,40 @@
             {
               "title": "Professional Consulting",
               "description": "Our expert consultants provide tailored strategies to help your business grow, optimize operations, and maximize profitability",
-              "icon": "serviceIcon1.png",
-              "photo": "service1.jpg",
+              "icon": {
+                "src": "serviceIcon1.png",
+                "alt": "Consulting Icon"
+              },
+              "photo": {
+                "src": "service1.jpg",
+                "alt": "Consulting Service Image"
+              },
               "link": "#"
             },
             {
               "title": "Digital Marketing",
               "description": "Boost your online presence with our comprehensive digital marketing services, including SEO, social media management, and PPC campaigns",
-              "icon": "serviceIcon2.png",
-              "photo": "service2.jpg",
+              "icon": {
+                "src": "serviceIcon2.png",
+                "alt": "Digital Marketing Icon"
+              },
+              "photo": {
+                "src": "service2.jpg",
+                "alt": "Digital Marketing Service Image"
+              },
               "link": "#"
             },
             {
               "title": "Supply Chain Management",
               "description": "Optimize your operations with our efficient logistics solutions. We handle inventory management, warehousing",
-              "icon": "serviceIcon3.png",
-              "photo": "service3.jpg",
+              "icon": {
+                "src": "serviceIcon3.png",
+                "alt": "Supply Chain Management Icon"
+              },
+              "photo": {
+                "src": "service3.jpg",
+                "alt": "Supply Chain Management Service Image"
+              },
               "link": "#"
             }
           ]
@@ -237,7 +261,10 @@
             "link": "#",
             "ref": ""
           },
-          "ctaImg": "cta.jpg",
+          "ctaImg": {
+            "src": "cta.jpg",
+            "alt": "CTA Image"
+          },
           "statsList": [
             {
               "value": "97%",
@@ -310,7 +337,10 @@
           "subTitle": "Contact",
           "title": "Get In Touch",
           "description": "Whether you are ready to start a project, have questions about our services, or just want to say hello—our team is here to help!",
-          "contactImg": "contact.jpg"
+          "contactImg": {
+            "src": "contact.jpg",
+            "alt": "Contact Image"
+          }
         },
         "props": [
           {

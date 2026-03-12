@@ -60,11 +60,16 @@ type Info = {
       <nav>
         <div class="footer-title text-muted">Contact Info</div>
         {websiteSetting.contactInfo.map(
-          (contact: { platform: string; link: string; label: string }) => (
+          (contact: {
+            platform: string;
+            link: string;
+            label: string;
+            content: string;
+          }) => (
             <div class="flex space-x-2">
               <span>{contact.platform}: </span>
               <a target="_blank" rel="noopener noreferrer" href={contact.link}>
-                {contact.label}
+                {contact.content}
               </a>
             </div>
           ),

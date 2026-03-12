@@ -3,7 +3,6 @@ import BaseHeader from "@/features/base/BaseHeader.astro";
 import NavBar from "@/features/base/NavBar.astro";
 import Footer from "@/features/base/Footer.astro";
 import websiteSetting from "@/features/websiteSetting.json";
-
 const { title, description, image } = Astro.props;
 ---
 
@@ -13,10 +12,10 @@ const { title, description, image } = Astro.props;
   class="scroll-smooth"
 >
   <head>
+
     <BaseHeader title={title} description={description} image={image} />
   </head>
-
-  <body class="font-inter bg-base-100 max-w-[1920px] mx-auto">
+  <body class="bg-base-100 max-w-480 mx-auto">
     <Fragment set:html={websiteSetting.BodyInsertion} />
     <NavBar />
     <main class="min-h-auto sm:min-h-[80vh]">

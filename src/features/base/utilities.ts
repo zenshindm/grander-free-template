@@ -86,26 +86,22 @@ export async function getLocalAssetsImg(inputWithSrcNAlt: {
   alt?: string;
 }): Promise<any> {
   let input = inputWithSrcNAlt.src;
-  let isInputUrl = false;
 
   const urlSchema = z.string().url();
   const result = urlSchema.safeParse(input);
   if (result.success) {
-    isInputUrl = true;
     return input;
   }
-  if (isInputUrl === false) {
-    const imageImports = await getAllImageImportInAsset();
+  const imageImports = await getAllImageImportInAsset();
 
-    const imagePath = `/src/assets/${input}`;
-    const specificImage = imageImports[imagePath];
+  const imagePath = `/src/assets/${input}`;
+  const specificImage = imageImports[imagePath];
 
-    if (!specificImage) {
-      throw new Error(`${input} Image ${imagePath} not found`);
-    }
-    const image = specificImage.default;
-    return image;
+  if (!specificImage) {
+    throw new Error(`${input} Image ${imagePath} not found`);
   }
+  const image = specificImage.default;
+  return image;
 }
 
 export async function optimizeImagesInString(htmlString: string) {

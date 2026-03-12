@@ -43,10 +43,6 @@
   --noise: 0;
 }
 
-@theme {
-  --font-inter: "Inter Tight", "sans-serif";
-}
-
 @layer base {
   .container {
     @apply w-full max-w-[1336px] px-[20px] mx-auto;

@@ -4,9 +4,25 @@
 @plugin "@iconify/tailwind4";
 @import "./theme.css";
 
+@theme inline {
+  --font-body: var(--font-body);
+  --font-heading: var(--font-heading);
+}
+
 @layer base {
+  body {
+    @apply font-body;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
   .container {
-    @apply w-full max-w-[1336px] px-[20px] mx-auto;
+    @apply w-full max-w-334 px-3 sm:px-0 mx-auto;
   }
   .container2 {
     @apply w-full max-w-3xl px-2 sm:px-0 mx-auto;

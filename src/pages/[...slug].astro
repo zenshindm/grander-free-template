@@ -1,6 +1,17 @@
 ---
 import sysMutliPageComp from "@/features/sysMutliPageComp.json";
-import { type MutliPageType } from "@/features/base/utilities";
+import {
+  type MutliPageType,
+  listOfmutliPageTypeSchema,
+} from "@/features/base/utilities";
+
+const result = listOfmutliPageTypeSchema.safeParse(sysMutliPageComp);
+if (!result.success) {
+  console.error("Validation failed for sysMutliPageComp.json:", result.error);
+  throw new Error(
+    "Invalid data in sysMutliPageComp.json" + JSON.stringify(result.error),
+  );
+}
 
 const layoutModules = import.meta.glob(["@/features/layouts/*.astro"], {
   eager: true,
@@ -43,7 +54,7 @@ const page = Astro.props;
       >
         {page.compData.map((componentData, index) => {
           const { componentModule, data } = componentData;
-          const Component = componentMapState[componentModule];
+          const Component = componentMapState[`${componentModule}`];
           return (
             <div id={`${index + 1}`}>
               <Component {...data} />

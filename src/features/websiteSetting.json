@@ -93,11 +93,11 @@
         }
     ],
     "bodyFont": {
-        "link": "https://fonts.googleapis.com/css2?family=Inter+Tight:opsz,wght@9..144,100..1000&display=swap",
+        "source": "fontsource",
         "name": "Inter Tight"
     },
     "headerFont": {
-        "link": "https://fonts.googleapis.com/css2?family=Inter+Tight:opsz,wght@9..144,100..1000&display=swap",
+        "source": "fontsource",
         "name": "Inter Tight"
     },
     "HeaderInsertion": "",

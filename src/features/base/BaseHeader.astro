@@ -1,9 +1,9 @@
 ---
-import "@/global.css";
+import "../../global.css";
 import websiteSetting from "@/features/websiteSetting.json";
 import { getLocalAssetsImg } from "@/features/base/utilities";
 import { getImage } from "astro:assets";
-import { AstroFont } from "astro-font";
+import { Font } from "astro:assets";
 
 const { title, description, image } = Astro.props;
 
@@ -76,42 +76,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   property="twitter:image"
   content={new URL(optimizedMetaImage.src, Astro.url)}
 />
+<Font cssVariable="--font-body" preload />
+<Font cssVariable="--font-heading" preload />
 
 <div>
   <Fragment set:html={websiteSetting.HeaderInsertion} />
 </div>
-
-{
-  websiteSetting.bodyFont.link !== "" ? (
-    <AstroFont
-      config={[
-        {
-          src: [],
-          name: websiteSetting.bodyFont.name,
-          googleFontsURL: websiteSetting.bodyFont.link,
-          preload: true,
-          display: "swap",
-          selector: "body",
-          fallback: "sans-serif",
-        },
-      ]}
-    />
-  ) : null
-}
-{
-  websiteSetting.headerFont.link !== "" ? (
-    <AstroFont
-      config={[
-        {
-          src: [],
-          name: websiteSetting.headerFont.name,
-          googleFontsURL: websiteSetting.headerFont.link,
-          preload: true,
-          display: "swap",
-          selector: "h1, h2, h3, h4, h5, h6",
-          fallback: "serif",
-        },
-      ]}
-    />
-  ) : null
-}
