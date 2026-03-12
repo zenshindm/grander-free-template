@@ -5,14 +5,14 @@ import ImgComp from "@/features/base/ImgComp.astro";
 const { subTitle, Title, Description, heroImg, button, infoData } = Astro.props;
 ---
 
-<section class="lg:h-[772px] border-b border-border relative isolate">
+<section class="lg:h-193 border-b border-border relative isolate">
   <div
-    class="container flex items-center h-full py-[30px] md:pt-[50px] md:pb-10 lg:py-0"
+    class="container flex items-center h-full py-7.5 md:pt-12.5 md:pb-10 lg:py-0"
   >
     <div class="w-full lg:w-[46%]">
-      <p class="text-accent text-base/[1.5]">{subTitle}</p>
+      <p class="text-accent text-base/normal">{subTitle}</p>
       <h1
-        class="text-2xl/[1.3] md:text-[52px]/[1.3] font-medium md:mb-[18px] my-2.5 md:mt-3"
+        class="text-2xl/[1.3] md:text-[52px]/[1.3] font-medium md:mb-4.5 my-2.5 md:mt-3"
       >
         {Title}
       </h1>
@@ -22,18 +22,18 @@ const { subTitle, Title, Description, heroImg, button, infoData } = Astro.props;
       {
         button.content === "" ? null : (
           <ActionButton
-            class="block w-max mt-[30px] md:mt-10"
+            class="block w-max mt-7.5 md:mt-10"
             button={button}
             type="primary"
           />
         )
       }
 
-      <div class="mt-11 hidden md:flex items-center gap-[15px]">
+      <div class="mt-11 hidden md:flex items-center gap-3.75">
         {
           infoData.map((item: { info: string }) => (
             <div class="flex items-center gap-2">
-              <span class="size-[18px] rounded-full bg-base-200 flex items-center justify-center shrink-0">
+              <span class="size-4.5 rounded-full bg-base-200 flex items-center justify-center shrink-0">
                 <svg
                   width="8"
                   height="7"
@@ -59,7 +59,7 @@ const { subTitle, Title, Description, heroImg, button, infoData } = Astro.props;
   </div>
 
   <div
-    class="lg:absolute top-0 right-0 w-full h-120 lg:w-1/2 lg:h-[772px] bg-primary overflow-hidden"
+    class="lg:absolute top-0 right-0 w-full h-120 lg:w-1/2 lg:h-193 bg-primary overflow-hidden"
   >
     <ImgComp
       class="lg:max-w-full w-full h-full object-cover hero-image"
@@ -73,11 +73,11 @@ const { subTitle, Title, Description, heroImg, button, infoData } = Astro.props;
   </div>
 
   <div class="container md:hidden py-5">
-    <div class="flex items-center justify-center gap-[15px]">
+    <div class="flex items-center justify-center gap-3.75">
       {
         infoData.map((item: { info: string }) => (
           <div class="flex items-center gap-2">
-            <span class="size-[18px] rounded-full bg-base-200 flex items-center justify-center shrink-0">
+            <span class="size-4.5 rounded-full bg-base-200 flex items-center justify-center shrink-0">
               <svg
                 width="8"
                 height="7"

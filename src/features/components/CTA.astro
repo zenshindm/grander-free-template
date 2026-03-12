@@ -2,21 +2,20 @@
 import ActionButton from "@/features/base/ActionButton.astro";
 import ImgComp from "@/features/base/ImgComp.astro";
 
-
 const { title, priBtn, secBtn, ctaImg, statsList } = Astro.props;
 ---
 
 <section
   class="bg-base-200 relative isolate max-md:flex max-md:flex-col-reverse"
 >
-  <div class="container py-[30px] md:py-[60px] lg:py-20">
-    <div class="space-y-10 md:space-y-[60px] lg:space-y-[100px]">
+  <div class="container py-7.5 md:py-15 lg:py-20">
+    <div class="space-y-10 md:space-y-15 lg:space-y-25">
       <div class="w-full md:w-1/2 lg:w-2/5">
         <h2 class="text-[26px]/[1.4] md:text-[28px]/[1.3] lg:text-[38px]/[1.3]">
           {title}
         </h2>
 
-        <div class="mt-[25px] md:mt-[30px] lg:mt-10 flex gap-[15px]">
+        <div class="mt-6.25 md:mt-7.5 lg:mt-10 flex gap-3.75">
           {
             priBtn.content === "" ? null : (
               <ActionButton button={priBtn} type="primary" />
@@ -30,7 +29,7 @@ const { title, priBtn, secBtn, ctaImg, statsList } = Astro.props;
         </div>
       </div>
 
-      <div class="grid grid-cols-2 md:flex items-center gap-[30px] lg:gap-20">
+      <div class="grid grid-cols-2 md:flex items-center gap-7.5 lg:gap-20">
         {
           statsList.map((stat: { value: string; description: string }) => (
             <div class="max-md:*:even:ml-auto">
@@ -50,12 +49,12 @@ const { title, priBtn, secBtn, ctaImg, statsList } = Astro.props;
   </div>
 
   <div
-    class="md:absolute top-0 h-full relative right-0 w-full md:w-[42%] lg:w-[46%] -z-[1] rightSlide"
+    class="md:absolute top-0 h-full relative right-0 w-full md:w-[42%] lg:w-[46%] -z-1 rightSlide"
   >
     <ImgComp
       width="1100"
       height="600"
-      class="max-w-full w-full h-[260px] md:h-full object-cover"
+      class="max-w-full w-full h-65 md:h-full object-cover"
       data-animate
       img={ctaImg}
     />

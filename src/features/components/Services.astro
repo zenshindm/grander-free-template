@@ -29,17 +29,17 @@ const { subTitle, title, servicelist } = Astro.props;
       {title}
     </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7.5">
       {
         servicelist.map((service: Service) => (
           <a
             href={service.link}
-            class="p-[30px] border border-border hover:border-black transition-all duration-300 group/service"
+            class="p-7.5 border border-border hover:border-black transition-all duration-300 group/service"
           >
             <div class="flex items-center justify-between">
               <h3 class="text-lg/normal">{service.title}</h3>
 
-              <div class="size-[60px] rounded-full bg-base-200 flex items-center justify-center">
+              <div class="size-15 rounded-full bg-base-200 flex items-center justify-center">
                 <ImgComp
                   width="24"
                   height="24"

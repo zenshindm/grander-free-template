@@ -18,7 +18,7 @@ const {
 
 <section class="section-space">
   <div
-    class="container grid grid-cols-1 lg:grid-cols-[30%_1fr] gap-10 lg:gap-[160px]"
+    class="container grid grid-cols-1 lg:grid-cols-[30%_1fr] gap-10 lg:gap-40"
   >
     <div>
       <span class="subTitleThing">{subTitle}</span>
@@ -41,9 +41,9 @@ const {
       <ActionButton class="block w-max" button={button} type="primary" />
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-[62%_1fr]">
-      <div class="pt-20 md:pt-[120px] grid grid-cols-[40%_1fr]">
+      <div class="pt-20 md:pt-30 grid grid-cols-[40%_1fr]">
         <div>
-          <div class="bg-base-200 p-3 md:p-[35px] space-y-7">
+          <div class="bg-base-200 p-3 md:p-8.75 space-y-7">
             <p class="text-4xl/none md:text-[50px]/none">{State1Value}</p>
             <p class="text-xs/normal md:text-sm/normal">
               {State1Label}
@@ -51,9 +51,9 @@ const {
           </div>
         </div>
 
-        <div class="pt-[140px] md:pt-[190px]">
+        <div class="pt-35 md:pt-47.5">
           <div
-            class="bg-base-200 p-3 sm:p-8 space-y-[50px] md:space-y-[100px]"
+            class="bg-base-200 p-3 sm:p-8 space-y-12.5 md:space-y-25"
           >
             <p class="text-4xl/none md:text-[50px]/none">{State2Value}</p>
             <p class="text-xs/normal md:text-sm/normal">
@@ -64,7 +64,7 @@ const {
       </div>
 
       <div
-        class="relative rightSlide h-auto sm:h-[220px] md:h-[310px]"
+        class="relative rightSlide h-auto sm:h-55 md:h-77.5"
         data-animation="rightSlide"
       >
         <ImgComp
