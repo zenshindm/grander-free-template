@@ -88,7 +88,7 @@
         {
           "label": "CTA Field",
           "widget": "btn",
-          "name": "ctaText"
+          "name": "button"
         },
         {
           "label": "Hero Image Field",
@@ -156,7 +156,7 @@
         {
           "label": "CTA Field",
           "widget": "btn",
-          "name": "ctaText"
+          "name": "button"
         },
         {
           "label": "State 1 Value Field",
