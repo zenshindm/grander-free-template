@@ -107,6 +107,6 @@
     "listOfAuthrizedImgDomain": [
         "cloudnary.com"
     ],
-    "deployMethod": "github",
+    "deployMethod": "manual",
     "deployProjectName": ""
 }
