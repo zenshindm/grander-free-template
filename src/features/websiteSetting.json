@@ -106,7 +106,5 @@
     "SideNavBar": "",
     "listOfAuthrizedImgDomain": [
         "cloudnary.com"
-    ],
-    "deployMethod": "manual",
-    "deployProjectName": ""
+    ]
 }
