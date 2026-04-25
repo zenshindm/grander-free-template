@@ -7,20 +7,19 @@ const { title, description, image } = Astro.props;
 ---
 
 <html
-  lang={websiteSetting.websiteLanguage}
-  data-theme="grander"
-  class="scroll-smooth"
+    lang={websiteSetting.websiteLanguage}
+    data-theme="grander"
+    class="scroll-smooth"
 >
-  <head>
-
-    <BaseHeader title={title} description={description} image={image} />
-  </head>
-  <body class="bg-base-100 max-w-480 mx-auto">
-    <Fragment set:html={websiteSetting.BodyInsertion} />
-    <NavBar />
-    <main class="min-h-auto sm:min-h-[80vh]">
-      <slot />
-    </main>
-    <Footer />
-  </body>
+    <head>
+        <BaseHeader title={title} description={description} image={image} />
+    </head>
+    <body class="min-block-svh max-w-640 mx-auto [scrollbar-gutter:stable]">
+        <Fragment set:html={websiteSetting.BodyInsertion} />
+        <NavBar />
+        <main class="min-h-auto sm:min-h-[80vh]">
+            <slot />
+        </main>
+        <Footer />
+    </body>
 </html>

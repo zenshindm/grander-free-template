@@ -7,93 +7,93 @@ import { Image } from "astro:assets";
 import { getLocalAssetsImg } from "@/features/base/utilities";
 ---
 
-<header class="py-[18px] lg:py-4 border-b border-black/10">
-  <nav
-    class="container flex flex-col lg:flex-row lg:items-center lg:justify-between"
-  >
-    <div class="flex items-center justify-between">
-      <a href="/">
-        <Image
-          src={getLocalAssetsImg(websiteSetting.websiteLogo1.image)}
-          alt="navbarlogo"
-          format="avif"
-        />
-      </a>
-      <div class="flex space-x-2 justify-center items-center">
-        <button
-          id="menu-toggle"
-          data-open="false"
-          class="group/menu lg:hidden"
-          aria-label="Toggle menu"
-        >
-          <div class="grid justify-items-center gap-1.5 [--traslate-d:7px]">
-            <span
-              class="h-px w-6 rounded-full bg-black transition-transform duration-300 group-data-[open='true']/menu:-rotate-45 group-data-[open='true']/menu:translate-y-[var(--traslate-d)]"
-            ></span>
-            <span
-              class="h-px w-6 rounded-full bg-black group-data-[open='true']/menu:scale-x-0 transition-transform duration-300"
-            ></span>
-            <span
-              class="h-px w-6 rounded-full bg-black transition-transform duration-300 group-data-[open='true']/menu:rotate-45 group-data-[open='true']/menu:-translate-y-[var(--traslate-d)]"
-            ></span>
-          </div>
-        </button>
-      </div>
-    </div>
-
-    <div
-      id="links-wrapper"
-      data-open="false"
-      class="max-lg:grid grid-rows-[0fr] data-[open='true']:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out"
+<header class="py-4.5 lg:py-4 border-b border-black/10">
+    <nav
+        class="container flex flex-col lg:flex-row lg:items-center lg:justify-between"
     >
-      <div
-        class="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-10 overflow-hidden"
-      >
-        <ul
-          class="flex flex-col lg:flex-row lg:justify-center items-center lg:gap-10 pt-[38px] lg:pt-0"
-        >
-          {
-            websiteSetting.NavbarInsertion.map((item) => (
-              <li>
-                {item.type === "single" ? (
-                  <a
-                    href={item.link}
-                    class="text-sm/none py-3 lg:py-0 inline-block"
-                  >
-                    {item.label}
-                  </a>
-                ) : null}
-              </li>
-            ))
-          }
-        </ul>
-        <div class="flex space-x-4 items-center">
-          <NavBarSide />
-          {
-            websiteSetting.ctaLink.content === "" ? null : (
-              <ActionButton
-                class="text-center"
-                button={websiteSetting.ctaLink}
-                type="outline-nav"
-              />
-            )
-          }
+        <div class="flex items-center justify-between">
+            <a href="/">
+                <Image
+                    src={getLocalAssetsImg(websiteSetting.websiteLogo1.image)}
+                    alt="navbarlogo"
+                    format="avif"
+                />
+            </a>
+            <div class="flex space-x-2 justify-center items-center">
+                <button
+                    id="menu-toggle"
+                    data-open="false"
+                    class="group/menu lg:hidden"
+                    aria-label="Toggle menu"
+                >
+                    <div
+                        class="grid justify-items-center gap-1.5 [--traslate-d:7px]"
+                    >
+                        <span
+                            class="h-px w-6 rounded-full bg-black transition-transform duration-300 group-data-[open='true']/menu:-rotate-45 group-data-[open='true']/menu:translate-y-[var(--traslate-d)]"
+                        ></span>
+                        <span
+                            class="h-px w-6 rounded-full bg-black group-data-[open='true']/menu:scale-x-0 transition-transform duration-300"
+                        ></span>
+                        <span
+                            class="h-px w-6 rounded-full bg-black transition-transform duration-300 group-data-[open='true']/menu:rotate-45 group-data-[open='true']/menu:-translate-y-[var(--traslate-d)]"
+                        ></span>
+                    </div>
+                </button>
+            </div>
         </div>
-      </div>
-    </div>
-  </nav>
+
+        <div
+            id="links-wrapper"
+            data-open="false"
+            class="max-lg:grid grid-rows-[0fr] data-[open='true']:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out"
+        >
+            <div
+                class="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-10 overflow-hidden"
+            >
+                <ul
+                    class="flex flex-col lg:flex-row lg:justify-center items-center lg:gap-10 pt-9.5 lg:pt-0"
+                >
+                    {
+                        websiteSetting.NavbarInsertion.map((item) => (
+                            <li>
+                                {item.type === "single" ? (
+                                    <a
+                                        href={item.link}
+                                        class="text-sm/none py-3 lg:py-0 inline-block"
+                                    >
+                                        {item.label}
+                                    </a>
+                                ) : null}
+                            </li>
+                        ))
+                    }
+                </ul>
+                <div class="flex space-x-4 items-center">
+                    <NavBarSide />
+                    {
+                        websiteSetting.ctaLink.content !== "" && (
+                            <div class="hidden lg:block">
+                                <ActionButton button={websiteSetting.ctaLink} />
+                            </div>
+                        )
+                    }
+                </div>
+            </div>
+        </div>
+    </nav>
 </header>
 
 <script>
-  const menuToggle = document.getElementById(
-    "menu-toggle",
-  ) as HTMLButtonElement;
+    const menuToggle = document.getElementById(
+        "menu-toggle",
+    ) as HTMLButtonElement;
 
-  const links = document.getElementById("links-wrapper") as HTMLDivElement;
+    const links = document.getElementById("links-wrapper") as HTMLDivElement;
 
-  menuToggle.addEventListener("click", () => {
-    const IS_OPEN = menuToggle.getAttribute("data-open") === "true";
-    menuToggle.setAttribute("data-open", `${!IS_OPEN}`);
-    links.setAttribute("data-open", `${!IS_OPEN}`);
-  });
+    menuToggle.addEventListener("click", () => {
+        const IS_OPEN = menuToggle.getAttribute("data-open") === "true";
+        menuToggle.setAttribute("data-open", `${!IS_OPEN}`);
+        links.setAttribute("data-open", `${!IS_OPEN}`);
+    });
 </script>

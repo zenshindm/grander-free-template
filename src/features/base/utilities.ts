@@ -73,7 +73,7 @@ export type MutliPageType = z.infer<typeof mutliPageTypeSchema>;
 
 async function getAllImageImportInAsset() {
   const images = import.meta.glob<{ default: ImageMetadata }>(
-    "/src/assets/*.{jpeg,jpg,png,gif,svg,webp,avif,tiff}",
+    "/src/assets/**/*.{jpeg,jpg,png,gif,svg,webp,avif,tiff}",
     {
       eager: true,
     },
